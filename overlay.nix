@@ -3,5 +3,5 @@ let
   mkDerivation = final.stdenv.mkDerivation;
 in 
 {
-  buildGleamBin = final.callPackage ./buildGleamBin.nix {inherit mkDerivation;};
+  mkGleamBinary = final.callPackage ./mkGleamBinary.nix {inherit mkDerivation;};
 }

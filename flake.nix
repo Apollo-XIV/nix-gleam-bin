@@ -5,14 +5,22 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nix-gleam.url = "github:arnarg/nix-gleam";
     deno2nix.url = "github:SnO2WMaN/deno2nix";
+    # nix-deno.url = "github:nekowinston/nix-deno";
+    nix-deno = {
+      type = "github";
+      owner = "nekowinston";
+      repo = "nix-deno";
+      rev = "8223a3544a7cea8063ebba7a5d19d802293bb9e1";
+    };
   };
 
-  outputs = { self, nixpkgs, nix-gleam, deno2nix }: 
+  outputs = { self, nixpkgs, nix-gleam, deno2nix, nix-deno }: 
   let
     overlay = import ./overlay.nix;
     combinedOverlays = [ 
       nix-gleam.overlays.default 
       deno2nix.overlays.default 
+      nix-deno.overlays.default
       overlay 
     ];
 
@@ -32,7 +40,7 @@
       };
     in 
     {
-      default = pkgs.buildGleamBin {
+      default = pkgs.mkGleamBinary {
         pname = "test_package";
         src = ./test_package;
         version = "1.0.0";

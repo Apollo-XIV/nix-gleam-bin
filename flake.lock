@@ -77,6 +77,25 @@
         "type": "github"
       }
     },
+    "nix-deno": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1727768522,
+        "narHash": "sha256-YiooFGeR7+sXSkHNfSzT8GQf+xtzbDwUbfbwkCCyuUs=",
+        "owner": "nekowinston",
+        "repo": "nix-deno",
+        "rev": "8223a3544a7cea8063ebba7a5d19d802293bb9e1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nekowinston",
+        "repo": "nix-deno",
+        "rev": "8223a3544a7cea8063ebba7a5d19d802293bb9e1",
+        "type": "github"
+      }
+    },
     "nix-gleam": {
       "locked": {
         "lastModified": 1717670865,
@@ -110,6 +129,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1702312524,
+        "narHash": "sha256-gkZJRDBUCpTPBvQk25G0B7vfbpEYM5s5OZqghkjZsnE=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "a9bf124c46ef298113270b1f84a164865987a91c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1727802920,
         "narHash": "sha256-HP89HZOT0ReIbI7IJZJQoJgxvB2Tn28V6XS3MNKnfLs=",
         "owner": "nixos",
@@ -127,8 +162,9 @@
     "root": {
       "inputs": {
         "deno2nix": "deno2nix",
+        "nix-deno": "nix-deno",
         "nix-gleam": "nix-gleam",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       }
     }
   },
