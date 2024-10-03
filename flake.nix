@@ -39,7 +39,7 @@
     {
       default = pkgs.mkGleamBinary {
         pname = "test_package";
-        src = ./test_package;
+        src = ./examples/simple;
         version = "1.0.0";
       };
     });
