@@ -5,6 +5,7 @@
 , nodejs
 , esbuild
 , denoPlatform
+, deno
 }:
 
 {pname, version, src}:
@@ -22,13 +23,16 @@ let
     buildInputs = [
       nodejs
       gleam
+      deno
       esbuild
     ];
     buildPhase = ''
       cp -r ${gleam_build}/lib build
       ls ${gleam_build}/lib
       ls build/test_package
-      esbuild ./build/${pname}/${pname}.mjs --bundle
+      # esbuild ./build/${pname}/${pname}.mjs --bundle
+      mkdir dist
+      deno bundle ./build/${pname}/${pname}.mjs dist/${pname}.js
       echo "import { main } from './${pname}.js'; main();" > dist/glue.mjs;
       cat <<-EOF > deno.lock
         {
