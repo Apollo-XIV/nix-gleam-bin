@@ -4,8 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nix-gleam.url = "github:arnarg/nix-gleam";
-    deno2nix.url = "github:SnO2WMaN/deno2nix";
-    # nix-deno.url = "github:nekowinston/nix-deno";
     nix-deno = {
       type = "github";
       owner = "nekowinston";
@@ -14,12 +12,11 @@
     };
   };
 
-  outputs = { self, nixpkgs, nix-gleam, deno2nix, nix-deno }: 
+  outputs = { self, nixpkgs, nix-gleam, nix-deno }: 
   let
     overlay = import ./overlay.nix;
     combinedOverlays = [ 
       nix-gleam.overlays.default 
-      deno2nix.overlays.default 
       nix-deno.overlays.default
       overlay 
     ];
@@ -60,7 +57,6 @@
         default = pkgs.mkShell {
           packages = with pkgs; [
             esbuild
-            bun
           ];          
         };
       }
