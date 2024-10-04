@@ -29,8 +29,14 @@ let
     buildPhase = ''
       cp -r ${gleam_build}/lib build
       mkdir dist
-      deno bundle ./build/${pname}/${pname}.mjs dist/${pname}.js
-      echo "import { main } from './${pname}.js'; main();" > dist/glue.mjs;
+      # deno bundle ./build/${pname}/${pname}.mjs dist/${pname}.js
+      esbuild --bundle ./build/${pname}/${pname}.mjs --outfile='dist/${pname}.js' --format=cjs
+      # echo "import { main } from './${pname}.js'; main();" > dist/glue.mjs;
+      cat <<-EOF > dist/glue.mjs
+        import pkg from './${pname}.js';
+        const {main} = pkg;
+        main()
+      EOF
       cat <<-EOF > deno.lock
         {
           "version": "3",
